@@ -1,0 +1,402 @@
+@import "tailwindcss";
+
+@source "../../src";
+
+@theme {
+  /* Streamlined Theme - Based on SVG Colors */
+  /* Main: #263238 (38 50 56), Accent: #FF725E (255 114 94), Secondary: #ffb573 (255 181 115) */
+
+  --color-background: 250 250 250;
+  --color-foreground: 38 50 56;
+
+  --color-card: 255 255 255;
+  --color-card-foreground: 38 50 56;
+
+  --color-popover: 255 255 255;
+  --color-popover-foreground: 38 50 56;
+
+  --color-primary: 255 114 94;
+  --color-primary-foreground: 255 255 255;
+
+  --color-secondary: 255 181 115;
+  --color-secondary-foreground: 38 50 56;
+
+  --color-muted: 240 240 240;
+  --color-muted-foreground: 117 117 117;
+
+  --color-accent: 255 181 115;
+  --color-accent-foreground: 38 50 56;
+
+  --color-destructive: 239 68 68;
+  --color-destructive-foreground: 255 255 255;
+
+  --color-border: 230 230 230;
+  --color-input: 230 230 230;
+  --color-ring: 255 114 94;
+
+  --radius-lg: 1rem;
+  --radius-md: 0.75rem;
+  --radius-sm: 0.5rem;
+}
+
+/* Global Styles */
+* {
+  border-color: rgb(var(--color-border));
+}
+
+body {
+  margin: 0;
+  background-color: rgb(var(--color-background));
+  color: rgb(var(--color-foreground));
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+/* Markdown styles for ReactMarkdown - Dark Theme */
+.prose {
+  color: rgb(var(--color-foreground));
+  max-width: 65ch;
+}
+
+.prose h1 {
+  font-size: 1.5em;
+  font-weight: 700;
+  margin-top: 0;
+  margin-bottom: 0.8em;
+  color: rgb(var(--color-foreground));
+}
+
+.prose h2 {
+  font-size: 1.3em;
+  font-weight: 600;
+  margin-top: 1.5em;
+  margin-bottom: 0.6em;
+  color: rgb(var(--color-foreground));
+}
+
+.prose h3 {
+  font-size: 1.1em;
+  font-weight: 600;
+  margin-top: 1.2em;
+  margin-bottom: 0.5em;
+  color: rgb(var(--color-foreground));
+}
+
+.prose p {
+  margin-top: 0.75em;
+  margin-bottom: 0.75em;
+  line-height: 1.6;
+}
+
+.prose ul, .prose ol {
+  margin-top: 0.75em;
+  margin-bottom: 0.75em;
+  padding-left: 1.5em;
+}
+
+.prose li {
+  margin-top: 0.25em;
+  margin-bottom: 0.25em;
+}
+
+.prose strong {
+  font-weight: 600;
+  color: rgb(var(--color-foreground));
+}
+
+.prose code {
+  background-color: rgb(var(--color-muted));
+  color: rgb(var(--color-primary));
+  padding: 0.2em 0.4em;
+  border-radius: var(--radius-sm);
+  font-size: 0.875em;
+  font-family: monospace;
+}
+
+.prose pre {
+  background-color: rgb(var(--color-muted));
+  color: rgb(var(--color-foreground));
+  padding: 1em;
+  border-radius: var(--radius-md);
+  overflow-x: auto;
+  margin-top: 1em;
+  margin-bottom: 1em;
+  border: 1px solid rgb(var(--color-border));
+}
+
+.prose pre code {
+  background-color: transparent;
+  padding: 0;
+  color: inherit;
+}
+
+.prose blockquote {
+  border-left: 4px solid rgb(var(--color-primary));
+  padding-left: 1em;
+  font-style: italic;
+  color: rgb(var(--color-muted-foreground));
+  margin: 1em 0;
+}
+
+.prose a {
+  color: rgb(var(--color-primary));
+  text-decoration: underline;
+}
+
+.prose a:hover {
+  color: rgb(var(--color-primary));
+  opacity: 0.8;
+}
+
+/* Dark Scrollbar styles */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgb(var(--color-background));
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgb(var(--color-muted));
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgb(var(--color-muted-foreground));
+}
+
+/* Additional modern styling */
+::selection {
+  background-color: rgb(var(--color-primary) / 0.3);
+  color: rgb(var(--color-foreground));
+}
+
+/* ENERGETIC AND VIBRANT UI ENHANCEMENTS */
+
+/* Smooth scroll behavior */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Vibrant gradients for buttons and cards */
+.energetic-gradient {
+  background: linear-gradient(135deg,
+    rgb(var(--color-primary)) 0%,
+    rgb(var(--color-secondary)) 100%);
+  box-shadow: 0 8px 24px rgba(255, 114, 94, 0.25);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.energetic-gradient:hover {
+  box-shadow: 0 12px 32px rgba(255, 114, 94, 0.35);
+  transform: translateY(-2px);
+}
+
+/* Shimmer effect for loading states */
+@keyframes shimmer {
+  0% {
+    background-position: -1000px 0;
+  }
+  100% {
+    background-position: 1000px 0;
+  }
+}
+
+.shimmer {
+  animation: shimmer 2s infinite linear;
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.3) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  background-size: 1000px 100%;
+}
+
+/* Pulse animation for important elements */
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(255, 114, 94, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 40px rgba(255, 114, 94, 0.6);
+  }
+}
+
+.pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+/* Bounce animation for icons */
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.bounce {
+  animation: bounce 2s ease-in-out infinite;
+}
+
+/* Card hover effects - more energetic */
+.energetic-card {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 2px solid transparent;
+}
+
+.energetic-card:hover {
+  transform: translateY(-8px) scale(1.02);
+  border-color: rgb(var(--color-primary));
+  box-shadow: 0 20px 40px rgba(255, 114, 94, 0.2),
+              0 0 0 4px rgba(255, 114, 94, 0.1);
+}
+
+/* Shine effect for cards */
+.card-shine {
+  position: relative;
+  overflow: hidden;
+}
+
+.card-shine::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.3),
+    transparent
+  );
+  transition: left 0.5s ease;
+}
+
+.card-shine:hover::before {
+  left: 100%;
+}
+
+/* Vibrant text colors */
+.text-vibrant-primary {
+  background: linear-gradient(135deg,
+    rgb(var(--color-primary)),
+    rgb(var(--color-secondary)));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-weight: 700;
+}
+
+/* Glass morphism effect */
+.glass-effect {
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 8px 32px rgba(255, 114, 94, 0.15);
+}
+
+/* Neon glow text */
+.neon-glow {
+  text-shadow:
+    0 0 10px rgba(255, 114, 94, 0.5),
+    0 0 20px rgba(255, 114, 94, 0.3),
+    0 0 30px rgba(255, 114, 94, 0.2);
+}
+
+/* Enhanced Image Styling - Clear, Shiny, and Energetic */
+img {
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: high-quality;
+  -webkit-backface-visibility: hidden;
+  -moz-backface-visibility: hidden;
+  -webkit-transform: translateZ(0);
+  -moz-transform: translateZ(0);
+}
+
+/* SVG illustrations - CLEAR AND SHINY */
+img[src$=".svg"] {
+  filter: drop-shadow(0 8px 24px rgba(255, 114, 94, 0.15))
+          brightness(1.05)
+          contrast(1.1)
+          saturate(1.2);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+img[src$=".svg"]:hover {
+  transform: scale(1.05) translateY(-4px);
+  filter: drop-shadow(0 12px 32px rgba(255, 114, 94, 0.25))
+          brightness(1.08)
+          contrast(1.15)
+          saturate(1.3);
+}
+
+/* Card with background images - NO LOW OPACITY */
+.relative img {
+  image-rendering: high-quality;
+  will-change: transform;
+  opacity: 1 !important; /* Force full opacity */
+}
+
+/* Floating background decorations - VIBRANT AND CLEAR */
+.opacity-5 img,
+.opacity-10 img,
+.opacity-20 img,
+.opacity-30 img {
+  opacity: 0.85 !important; /* Much more visible */
+  filter: brightness(1.15)
+          contrast(1.15)
+          saturate(1.3)
+          drop-shadow(0 4px 16px rgba(255, 114, 94, 0.1));
+  animation: float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-10px) rotate(2deg);
+  }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+/* Center-aligned illustrations - BRIGHT */
+.mx-auto img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  filter: brightness(1.05) saturate(1.2);
+}
+
+/* Energetic glow effect */
+img[src$=".svg"]::after {
+  content: '';
+  position: absolute;
+  inset: -10px;
+  background: radial-gradient(circle, rgba(255, 114, 94, 0.1) 0%, transparent 70%);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+img[src$=".svg"]:hover::after {
+  opacity: 1;
+}
