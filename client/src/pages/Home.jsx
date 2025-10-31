@@ -31,8 +31,8 @@ const Home = () => {
       <div className="relative overflow-hidden">
         <div className="container relative mx-auto px-4 py-20">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            {/* Left Side - Content */}
-            <div className="flex flex-col justify-center space-y-10">
+            {/* Left Side - Content with more left margin */}
+            <div className="flex flex-col justify-center space-y-10 lg:pl-32">
               {/* Header */}
               <div>
                 <div className="flex items-center mb-6">

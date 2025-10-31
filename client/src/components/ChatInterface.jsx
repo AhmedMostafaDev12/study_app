@@ -182,10 +182,7 @@ const ChatInterface = () => {
       <div className="flex-1 overflow-y-auto px-6 py-6 space-y-6 relative z-20">
         {messages.length === 0 ? (
           <div className="flex items-center justify-center h-full">
-            <div className="text-center max-w-md">
-              <div className="w-40 h-40 mx-auto mb-6 bounce">
-                <img src="/Online learning-pana.svg" alt="" className="w-full h-full object-contain" />
-              </div>
+            <div className="text-center max-w-md relative z-30">
               <h3 className="text-3xl font-bold text-vibrant-primary mb-4 neon-glow">
                 Start Learning!
               </h3>
