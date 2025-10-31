@@ -16,15 +16,15 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     git \
     && rm -rf /var/lib/apt/lists/*
 
-# Copy requirements file
-COPY requirements.txt .
+# Copy requirements file from server directory
+COPY server/requirements.txt .
 
 # Install Python dependencies
 # Using --no-cache-dir to reduce image size
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Copy application code
-COPY server_apps/ ./server_apps/
+# Copy application code from server directory
+COPY server/server_apps/ ./server_apps/
 
 # Create necessary directories for uploads and vector databases
 RUN mkdir -p server_apps/uploads server_apps/db
@@ -45,4 +45,4 @@ HEALTHCHECK --interval=30s --timeout=10s --start-period=5s --retries=3 \
 
 # Run the FastAPI application with uvicorn
 # Using uvicorn directly is better for production than uvicorn.run()
-CMD ["uvicorn", "server_apps.FastAPI_app:app", "--host", "0.0.0.0", "--port", "8000", "--workers", "1"]
+CMD uvicorn server_apps.FastAPI_app:app --host 0.0.0.0 --port $PORT --workers 1
