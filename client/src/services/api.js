@@ -1,7 +1,8 @@
 import axios from 'axios';
 
 // Base URL for the FastAPI backend
-const API_BASE_URL = 'http://localhost:8000';
+// Use environment variable for production, fallback to Railway deployment
+const API_BASE_URL = import.meta.env.VITE_API_URL || 'https://pdf-study-assistant-production.up.railway.app';
 
 // Create axios instance with default config
 const apiClient = axios.create({
