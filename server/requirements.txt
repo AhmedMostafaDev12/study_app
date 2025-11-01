@@ -18,6 +18,14 @@ langgraph-checkpoint-sqlite==2.0.6
 
 # Vector Database & Embeddings
 chromadb==1.1.0
+
+# PyTorch CPU-only (much smaller, no CUDA)
+--extra-index-url https://download.pytorch.org/whl/cpu
+torch
+torchvision
+torchaudio
+
+# Sentence Transformers (will use CPU PyTorch above)
 sentence-transformers==5.1.1
 
 # PDF Processing
