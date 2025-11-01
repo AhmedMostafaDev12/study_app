@@ -11,8 +11,8 @@ from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from dotenv import load_dotenv
 
-from Document import DocumentProcessor, uploads_dir, db_base_dir
-from LangGraph_tool import graph
+from .Document import DocumentProcessor, uploads_dir, db_base_dir
+from .LangGraph_tool import graph
 
 load_dotenv()
 

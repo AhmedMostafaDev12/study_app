@@ -10,7 +10,7 @@ from langgraph.checkpoint.memory import MemorySaver
 from langchain_core.tools import tool
 
 from dotenv import load_dotenv
-from Document import DocumentProcessor
+from .Document import DocumentProcessor
 
 load_dotenv()
 
