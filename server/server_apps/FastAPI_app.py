@@ -58,41 +58,46 @@ class ChatRequest(BaseModel):
 async def upload_pdf(file: UploadFile = File(...)):
     """
     Upload and process a PDF document.
-    
+
     Returns document ID and processing status.
     """
     # Validate file type
     if not file.filename.endswith('.pdf'):
         raise HTTPException(
-            status_code=400, 
+            status_code=400,
             detail="Only PDF files are allowed"
         )
-    
+
     # Generate unique document ID
     doc_id = str(uuid4())
     file_path = os.path.join(uploads_dir, f"{doc_id}.pdf")
-    
+    metadata_path = os.path.join(uploads_dir, f"{doc_id}.txt")
+
     try:
         # Save uploaded file
         logger.info(f"Saving uploaded file: {file.filename}")
         with open(file_path, "wb") as f:
             content = await file.read()
             f.write(content)
-        
+
+        # Save original filename as metadata
+        with open(metadata_path, "w", encoding="utf-8") as f:
+            f.write(file.filename)
+
         # Process document (create vector store)
         logger.info(f"Processing PDF with doc_id: {doc_id}")
         result = processor.process_pdf(file_path, doc_id)
-        
+
         # Check if processing was successful
         if result.get("status") == "error":
             raise HTTPException(
-                status_code=500, 
+                status_code=500,
                 detail=f"Error processing PDF: {result.get('error')}"
             )
-        
+
         # Add original filename to result
         result["filename"] = file.filename
-        
+
         logger.info(f"Successfully processed {file.filename}: {result}")
         return result
         
@@ -117,24 +122,34 @@ async def list_documents():
     """
     try:
         docs = []
-        
+
         # Check if uploads directory exists
         if not os.path.exists(uploads_dir):
             return {"documents": []}
-        
+
         # Scan uploads directory for PDFs
         for filename in os.listdir(uploads_dir):
             if filename.endswith('.pdf'):
                 doc_id = filename[:-4]  # Remove .pdf extension
                 db_path = os.path.join(db_base_dir, f'chroma_{doc_id}')
-                
+                metadata_path = os.path.join(uploads_dir, f"{doc_id}.txt")
+
                 # Only include documents that have been processed (have vector store)
                 if os.path.exists(db_path):
+                    # Try to read original filename from metadata
+                    original_filename = filename
+                    if os.path.exists(metadata_path):
+                        try:
+                            with open(metadata_path, "r", encoding="utf-8") as f:
+                                original_filename = f.read().strip()
+                        except Exception as e:
+                            logger.warning(f"Could not read metadata for {doc_id}: {e}")
+
                     docs.append({
                         "doc_id": doc_id,
-                        "filename": filename
+                        "filename": original_filename
                     })
-        
+
         logger.info(f"Found {len(docs)} processed documents")
         return {"documents": docs}
         

@@ -284,6 +284,12 @@ class DocumentProcessor:
             if os.path.exists(pdf_path):
                 os.remove(pdf_path)
                 logger.info(f"Deleted PDF file for {doc_id}")
+
+            # Remove metadata file
+            metadata_path = os.path.join(uploads_dir, f"{doc_id}.txt")
+            if os.path.exists(metadata_path):
+                os.remove(metadata_path)
+                logger.info(f"Deleted metadata file for {doc_id}")
             
             return True
             
