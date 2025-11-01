@@ -17,14 +17,14 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     && rm -rf /var/lib/apt/lists/*
 
 # Copy requirements file from server directory
-COPY server/requirements.txt .
+COPY requirements.txt .
 
 # Install Python dependencies
 # Using --no-cache-dir to reduce image size
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Copy application code from server directory
-COPY server/server_apps/ ./server_apps/
+COPY server_apps/ ./server_apps/
 
 # Create necessary directories for uploads and vector databases
 RUN mkdir -p server_apps/uploads server_apps/db
